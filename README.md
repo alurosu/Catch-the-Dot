@@ -1,2 +1,3 @@
-# Catch-the-Dot
- Android HTML app: Phonegap Build + Cordova
+# Catch the Dot
+
+[Download](https://play.google.com/store/apps/details?id=alurosu.games.catchthedot)
