@@ -5,7 +5,6 @@ var cHeight;  //canvas height
 var ctx; 		  //canvas context
 var canvas;
 var then;
-var countToAds = 0;
 var player;
 var enemies = new Array();
 var t;
@@ -72,7 +71,7 @@ function onDeviceReady(){
 	
 	if (!localStorage.highscore)
 		localStorage.highscore = 0;
-	$('#highscore').html('Best<span>:</span>'+localStorage.highscore);
+	$('#highscore').html('Best<span>:</span>' + localStorage.highscore);
 	
 	if (localStorage.isLogin == 'true') {
 		$('#autoLogin .fa').removeClass('fa-user-times').addClass('fa-user');
@@ -99,10 +98,6 @@ function onDeviceReady(){
 	
 	$('#rate').on(clickHandler, function(e) {
 		openBrowser("market://details?id=alurosu.games.catchthedot");
-	});
-	
-	$('#about').on(clickHandler, function(e) {
-		openBrowser("http://bit.ly/SpringForce");
 	});
 	
 	$('#bomb').on(clickHandler, function(e) {
@@ -148,7 +143,6 @@ function onDeviceReady(){
 	
 	$('#menu').on(clickHandler, function (e){
 		//close settings
-		adsClicked = false;
 		var container = $("#menu ul");
 		if (!container.is(e.target) && container.has(e.target).length === 0) {
 			container.fadeOut();
@@ -189,10 +183,6 @@ function onDeviceReady(){
 	$('#play').on(clickHandler, function(e) {
 		$('#menu').fadeOut();
 		startGame();
-	});
-	
-	$('#fullAds .close div').on(clickHandler, function(e) {
-		$('#fullAds').fadeOut(0);
 	});
 	
 	$('#autoLogin').on(clickHandler, function(e) {
@@ -316,27 +306,6 @@ function update(modifier) {
 				$("#menuTitle").html("Game Over");
 				$('#endScore').html('Score<span>:</span>'+score).fadeIn(0);
 				
-				// ads
-				countToAds++;
-				if (countToAds%6==0 && !localStorage.neverRate) {
-					// rate app alert
-					navigator.notification.confirm(
-					'If you enjoy Catch the Dot, whould you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!',
-					function(button) {
-						if (button == '1') {    // Rate Now
-							console.log("Rate Now");
-							localStorage.neverRate = true;
-							openBrowser("market://details?id=alurosu.games.catchthedot");
-						} else if (button == '2') { // Later
-							console.log("Remind later");
-						}
-					}, 'Rate Catch the Dot', ['Rate it', 'Remind me later']);
-				} else if (countToAds%3==0) {
-					// fill ads
-					loadAds();
-					$('#fullAds').fadeIn(0);
-				}
-				
 				$('#menu').fadeIn();
 				$('#centerMenu').css({'margin-top' : cHeight*0.5-$('#centerMenu').height()*0.5});
 				if (score>localStorage.highscore) {
@@ -377,8 +346,4 @@ function onStatus(status) {
 	if( status==Media.MEDIA_STOPPED ) {
 			snd.play();
 	}
-}
-
-function loadAds() {
-	$("#fillAds").attr("src","data/ads.html");
 }

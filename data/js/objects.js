@@ -263,17 +263,17 @@ function strToSpace(str){
 }
 
 var getPhoneGapPath = function() {
-		var path = window.location.pathname;
-		path = path.substr( path, path.length - 10 );
-		return path;
+	var path = window.location.pathname;
+	path = path.substr( path, path.length - 10 );
+	return path;
 };
 //background snd
 function onSuccess() {}
 function onError(error) {}
 function onStatus(status) {
-		if( status==Media.MEDIA_STOPPED ) {
-				snd.play();
-		}
+	if( status==Media.MEDIA_STOPPED ) {
+		snd.play();
+	}
 }
 
 function startGame() {
