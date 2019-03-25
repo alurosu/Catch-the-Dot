@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+  <title>Catch the Dot</title>
+  <link rel="stylesheet" href="data/css/font-awesome.min.css">
+  <link rel="stylesheet" href="data/css/main.css" />
+	
+  <script type="text/javascript" src="phonegap.js"></script>
+  <script type="text/javascript" src="share.js"></script>
+  <script type="text/javascript" src="google-play-game.js"></script>
+	<script type="text/javascript" src="inappbilling.js"></script>
+  
+  <script type="text/javascript" src="data/js/jquery.js"></script>
+	<script type="text/javascript" src="data/js/objects.js"></script>
+  <script type="text/javascript" src="data/js/game.js"></script>
+</head>
+
+<body>
+	<canvas id="canvas">Your device does not support canvas.</canvas>
+	<div id="bomb" class="disabled">
+		<div>
+			<i class="fa fa-bolt"></i>
+		</div>
+	</div>
+	<div id="menu">
+		<div id="settings"><i class="fa fa-cog"></i><span>options</span></div>
+		
+		<ul>
+			<li id="leaderboard" class="hidden"><i class="fa fa-cubes"></i> Leaderboards</li>
+			<li id="achievements" class="hidden"><i class="fa fa-trophy"></i> Achievements</li>
+			<li id="autoLogin"><i class="fa fa-user"></i> Auto-login: <span>-</span></li>
+			
+			<li id="about"><i class="fa fa-info-circle"></i> About us</li>
+			<li id="share"><i class="fa fa-share-alt"></i> Share with your friends</li>
+			<li id="rate"><i class="fa fa-star"></i> Rate this app</li>
+			
+			<li id="skins" style="display: none;"><i class="fa fa-unlock-alt"></i> Unlock skins</li>
+			<li id="buyCoins"><i class="fa fa-shopping-cart"></i> Buy 50 coins</li>
+		</ul>
+		
+		<div id="centerMenu">
+			<div class="title" id="menuTitle">Catch the Dot</div>
+			<div id="endScore">Score<span>:</span>0</div>
+			<div id="play">Play</div>
+			<div id="highscore">Best<span>:</span>0</div>
+		</div>
+		
+		<div id="volume"><i class="fa fa-volume-up"></i></div>
+		<div id="version">version <span>1</span>.<span>2</span></div>
+	</div>
+	
+	<div id="fullAds">
+		<div id="loadingAds">Loading ads ..</div>
+		<iframe frameborder="0" id="fillAds" allowTransparency="true"></iframe>
+		<div class="close"><div>x</div></div>
+	</div>
+</body>
+</html>
