@@ -20,16 +20,31 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 }
+#totalCoins {
+    font-size: 1.4em;
+    color: #7bd827;
+    position: fixed;
+    left: .5em;
+    bottom: .3em;
+    z-index: 99;
+}
+#totalCoins span {
+    color: #8db0d3;
+    margin-left: .2em;
+}
 .coin {
 	color: #f08047 !important;
 	background: #ffff80;
 	border: 1px solid #f08047;
 	border-radius: 100%;
-	font-size: 0.8em;
-	height: 1.2em;
-	width: 1.2em;
+	font-size: 0.7em;
+	height: 1.4em;
+	width: 1.4em;
 	display: inline-block;
 	text-align: center;
+    line-height: 1.2em;
+    vertical-align: middle;
+    margin-right: .25em;
 }
 #canvas {
 	width: 100%;
@@ -47,15 +62,15 @@ body {
 	background: #112435;
 	text-align: center;
 	-webkit-animation: bombGlow 1s infinite; /* Safari 4+ */
-  -moz-animation:    bombGlow 1s infinite; /* Fx 5+ */
-  animation:         bombGlow 1s infinite; /* IE 10+, Fx 29+ */
+	-moz-animation:    bombGlow 1s infinite; /* Fx 5+ */
+	animation:         bombGlow 1s infinite; /* IE 10+, Fx 29+ */
 }
 #bomb.disabled div {
 	color: #666;
 	border: 2px solid #666;
 	-webkit-animation: none; 
-  -moz-animation:    none; 
-  animation:         none;
+	-moz-animation:    none; 
+	animation:         none;
 }
 
 @-webkit-keyframes bombGlow {
@@ -91,50 +106,7 @@ body {
 		box-shadow: none;
 	}
 }
-
-#fullAds .close {
-	position: fixed;
-	top: 0;
-	right: 0;
-	padding-top: 1em;
-	padding-right: 2em;
-	z-index: 999;
-}
-#fullAds .close div {
-	background: #112435;
-	border-radius: 100%;
-	border: 2px solid;
-	text-align: center;
-	cursor: pointer;
-	font-size: 2em;
-	width: 1em;
-	height: 1em;
-	padding: 0.05em 0.2em 0.35em 0.2em;
-	z-index: 3;
-}
-#fullAds{
-	display: none;
-}
-#loadingAds {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	text-align:center;
-	padding-top: 15%;
-	z-index: 1;
-}
-#fillAds {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	z-index: 2;
-}
-#menu, #fullAds {
+#menu {
 	background: #112435;
 	position: fixed;
 	width: 100%;
@@ -168,25 +140,26 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
-  z-index: 99;
+	z-index: 99;
 	height: 100%;
 }
 #volume {
 	color: #7bd827;
-	font-size: 2em;
+	font-size: 1.5em;
 	width: 1em;
 	position: fixed;
-	bottom: 5px;
-	right: 0.5em;
+	bottom: .2em;
+	right: .5em;
 }
 #settings i{
 	color: #7bd827;
 	font-size: 1.5em;
 	vertical-align: middle;
-	padding: 10px;
 }
 #settings {
-	float: left;
+    position: fixed;
+    top: .5em;
+    left: .5em;
 }
 #play {
 	display: bock;
@@ -214,17 +187,19 @@ body {
 	display:none;
 }
 #highscore {
-	margin-top: 0.2em;
-	padding-top: 0.2em;
-	margin-bottom: 1em;
+	position:fixed;
+	right: .5em;
+	top: .4em;
+	z-index: 99;
+	color: #8db0d3;
 }
-#version {
-	font-size: 0.8em;
-	position: fixed;
-	bottom: 5px;
-	left: 10px;
+#highscore i {
+	color: #7bd827;
 }
-#highscore span, #endScore span, #version span {
+#highscore > * {
+	font-size: 1.4em;
+}
+#endScore span, #version span {
 	color: #7bd827;
 }
 #autoLogin , #rate{

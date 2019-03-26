@@ -65,13 +65,14 @@ function onDeviceReady(){
 	
 	if (!localStorage.coins)
 		localStorage.coins = 0;
+	$("#totalCoins span").html(localStorage.coins);
 	
 	if (!localStorage.isLogin)
 		localStorage.isLogin = 'true';
 	
 	if (!localStorage.highscore)
 		localStorage.highscore = 0;
-	$('#highscore').html('Best<span>:</span>' + localStorage.highscore);
+	$('#highscore span').html(localStorage.highscore);
 	
 	if (localStorage.isLogin == 'true') {
 		$('#autoLogin .fa').removeClass('fa-user-times').addClass('fa-user');
@@ -107,6 +108,7 @@ function onDeviceReady(){
 			notification = 'you need 5 enemies';
 		else if (!player.invulnerability) {
 			localStorage.coins -= 5;
+			$("#totalCoins span").html(localStorage.coins);
 			$('#bomb').addClass('disabled');
 			notification = '     ';
 			player.setInvulnerability();
@@ -123,6 +125,7 @@ function onDeviceReady(){
 			inappbilling.buy(function(){
 				inappbilling.consumePurchase(function(){
 					localStorage.coins = parseInt(localStorage.coins) + 50;
+					$("#totalCoins span").html(localStorage.coins);
 					alert("You now own " + localStorage.coins + " coins.");
 					// add helper achievement
 					doAchievement("CgkI_7ufk-EKEAIQCg");
@@ -181,7 +184,7 @@ function onDeviceReady(){
 	});
 	
 	$('#play').on(clickHandler, function(e) {
-		$('#menu').fadeOut();
+		$('#menu').fadeOut(0);
 		startGame();
 	});
 	
@@ -227,7 +230,6 @@ function loop() {
 };
 
 function update(modifier) {
-	drawCoins();
 	drawScore();
 	drawNotification(notification);
 	player.draw(modifier);
@@ -267,6 +269,7 @@ function update(modifier) {
 		if (Math.sqrt((c.x-player.x)*(c.x-player.x) + (c.y-player.y)*(c.y-player.y)) < c.r+player.r) {
 			c.x=c.y=-2*player.r;
 			localStorage.coins++;
+			$("#totalCoins span").html(localStorage.coins);
 			coinsThisGame++;
 			if (localStorage.sound == "on" && typeof Media != 'undefined')
 				sndCoin.play();
@@ -306,11 +309,11 @@ function update(modifier) {
 				$("#menuTitle").html("Game Over");
 				$('#endScore').html('Score<span>:</span>'+score).fadeIn(0);
 				
-				$('#menu').fadeIn();
+				$('#menu').fadeIn(0);
 				$('#centerMenu').css({'margin-top' : cHeight*0.5-$('#centerMenu').height()*0.5});
 				if (score>localStorage.highscore) {
 					localStorage.highscore = score;
-					$('#highscore').html('Best<span>:</span>'+score);
+					$('#highscore span').html(score);
 					if (localStorage.isLogin == 'true') {
 						//save score to google
 						submitHighscore(localStorage.highscore);

@@ -158,7 +158,7 @@ var coin = function(){
 		ctx.textAlign="center";
 		ctx.fillStyle = "#f08047";
 		ctx.font = 1.2*this.r + "px Monospace";
-		ctx.fillText('$', this.x, this.y);
+		ctx.fillText('C', this.x-this.r*0.05, this.y+this.r*0.07);
 	}
 }
 
@@ -198,33 +198,6 @@ var enemy = function(){
 		ctx.stroke();
 		
 	}
-}
-
-function drawCoins() {
-	var r = cHeight*0.035;
-	ctx.textBaseline="middle";
-	
-	ctx.beginPath();
-	ctx.fillStyle="#ffff80";
-	ctx.strokeStyle="#f08047";
-	ctx.lineWidth = 1;
-	ctx.arc(2*r, cHeight - r*2, r,0,2*Math.PI);
-	ctx.fill();
-	ctx.stroke();
-	
-	ctx.textAlign="center";
-	ctx.fillStyle = "#f08047";
-	ctx.font = 1.2*r + "px Monospace";
-	ctx.fillText('$', r*2, cHeight - r*2);
-	
-	ctx.beginPath();
-	ctx.textAlign="left";
-	ctx.fillStyle = "#8db0d3";
-	ctx.font = 2*r + "px Monospace";
-	ctx.fillText(' ' + localStorage.coins, r*3.8, cHeight - r*2);
-	
-	ctx.fillStyle = "#7bd827";
-	ctx.fillText('x', r*3.5, cHeight - r*2);
 }
 
 function drawScore() {
