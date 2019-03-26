@@ -177,6 +177,15 @@ function onDeviceReady(){
 		}
 	});
 	
+	$("#hughscore").on(clickHandler, function(e) {
+		if (localStorage.isLogin == 'true') {
+			var dt = {
+				leaderboardId: "CgkI_7ufk-EKEAIQAQ"
+			};
+			googleplaygame.showLeaderboard(dt);
+		}
+	});
+	
 	$("#achievements").on(clickHandler, function(e) {
 		if (localStorage.isLogin == 'true') {
 			googleplaygame.showAchievements();

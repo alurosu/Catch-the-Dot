@@ -150,6 +150,7 @@ body {
 	position: fixed;
 	bottom: .2em;
 	right: .5em;
+	cursor: pointer;
 }
 #settings i{
 	color: #7bd827;
@@ -160,6 +161,7 @@ body {
     position: fixed;
     top: .5em;
     left: .5em;
+	cursor: pointer;
 }
 #play {
 	display: bock;
@@ -192,6 +194,7 @@ body {
 	top: .4em;
 	z-index: 99;
 	color: #8db0d3;
+	cursor: pointer;
 }
 #highscore i {
 	color: #7bd827;
