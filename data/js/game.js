@@ -117,7 +117,7 @@ function onDeviceReady(){
 		};
 		 
 		var onError = function(msg) {
-		  console.log("Sharing failed with message: " + msg);
+		  alert("Sharing failed with message: " + msg);
 		};
 		 
 		window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
@@ -142,7 +142,7 @@ function onDeviceReady(){
 			if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
 		})
 		.catch(function (err) {
-			console.log(err);
+			alert(JSON.stringify(err));
 		});
 	});
 	

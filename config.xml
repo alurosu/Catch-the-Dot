@@ -3,7 +3,7 @@
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "alurosu.games.catchthedot"
     versionCode = "50"
-    version     = "1.3.3" >
+    version     = "1.3.4" >
 
 	<name>Catch the Dot</name>
 
@@ -43,8 +43,6 @@
 	<preference name="phonegap-version" value="cli-8.0.0" />
 	
 	<access origin="*" />
-	<allow-intent href="http://*/*" />
-	<allow-intent href="https://*/*" />
-	<allow-navigation href="http://*/*" />
-	<allow-navigation href="https://*/*" />
+	<allow-intent href="*" />
+	<allow-navigation href="*" />
 </widget>
