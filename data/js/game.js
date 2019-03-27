@@ -110,24 +110,24 @@ function onDeviceReady(){
 		inAppPurchase
 		.getProducts(['50coins'])
 		.then(function(products) { 
-			alert(JSON.stringify(products));
+			// alert(JSON.stringify(products));
 			
 			inAppPurchase
 			.restorePurchases()
 			.then(function(data) {
-				alert(JSON.stringify(data));
+				// alert(JSON.stringify(data));
 				
 				data.forEach(function(entry) {
 					inAppPurchase.consume(entry.productType, entry.receipt, entry.signature);
 				});
 			})
 			.then(function () {
-				alert('buy');
+				// alert('buy');
 				inAppPurchase
 				.buy('50coins')
 				.then(function (data) {
-					alert('consume buy');
-					alert(JSON.stringify(data));
+					// alert('consume buy');
+					// alert(JSON.stringify(data));
 					
 					return inAppPurchase.consume(data.productType, data.receipt, data.signature);
 				})
@@ -143,12 +143,12 @@ function onDeviceReady(){
 					if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
 				})
 				.catch(function (err) {
-					alert('error 3');
+					// alert('error 3');
 					alert(JSON.stringify(err));
 				});
 			})
 			.catch(function (err) {
-				alert('error 2');
+				// alert('error 2');
 				alert(JSON.stringify(err));
 			});
 		})
