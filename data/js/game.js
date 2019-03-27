@@ -241,6 +241,7 @@ function onDeviceReady(){
 			$('#autoLogin span').html('off');
 			$('.hidden').fadeOut(0);
 			localStorage.isLogin = 'false';
+			window.plugins.playGamesServices.signout();
 		}
 	});
 	
