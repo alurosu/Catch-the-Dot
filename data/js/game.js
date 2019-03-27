@@ -103,6 +103,7 @@ function onDeviceReady(){
 	});
 	
 	$('#share').on(clickHandler, function(e) {
+		alert('do share');
 		var options = {
 		  message: "My best score in Catch the Dot is " + localStorage.highscore + "! Can you beat me? http://bit.ly/CatchTheDot",
 		  subject: "Catch the Dot Highscore",
@@ -124,6 +125,7 @@ function onDeviceReady(){
 	});
 	
 	$('#buyCoins').on(clickHandler, function(e) {
+		alert('do buy');
 		inAppPurchase
 		.buy('50coins')
 		.then(function (data) {

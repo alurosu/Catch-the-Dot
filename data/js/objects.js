@@ -273,8 +273,10 @@ function fontFix(){
 }
 
 function doLogin(callback) {
+	alert('do login');
 	if (typeof(window.plugins.playGamesServices) != "undefined") {
 		window.plugins.playGamesServices.isSignedIn(function (result) {
+			alert(JSON.stringify(result));
 			if (result.isSignedIn) {
 				// show user if logged in
 				window.plugins.playGamesServices.showPlayer(function (playerData) {
