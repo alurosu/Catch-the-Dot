@@ -3,7 +3,7 @@
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "alurosu.games.catchthedot"
     versionCode = "50"
-    version     = "1.3.7" >
+    version     = "1.5.0" >
 
 	<name>Catch the Dot</name>
 

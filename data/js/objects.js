@@ -287,8 +287,8 @@ function doLogin(callback) {
 					window.plugins.playGamesServices.showPlayer(function (playerData) {
 						localStorage.isLogin = 'true';
 						$('.hidden').fadeIn(0);
+						submitHighscore(localStorage.highscore);
 					});
-					submitHighscore(localStorage.highscore);
 				}, function(){
 					alert("Can't connect to the internet. Your score will not be saved on our leaderboard.");
 					$('#autoLogin .fa').removeClass('fa-user').addClass('fa-user-times');

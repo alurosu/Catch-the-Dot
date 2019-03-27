@@ -103,57 +103,37 @@ function onDeviceReady(){
 	});
 	
 	$('#share').on(clickHandler, function(e) {
-		alert('do share');
-		var options = {
-		  message: "My best score in Catch the Dot is " + localStorage.highscore + "! Can you beat me? http://bit.ly/CatchTheDot",
-		  subject: "Catch the Dot Highscore",
-		  url: 'http://bit.ly/CatchTheDot',
-		  chooserTitle: 'Catch the Dot',
-		  appPackageName: 'alurosu.games.catchthedot'
-		};
-		 
-		var onSuccess = function(result) {
-		  alert("Share completed? " + result.completed);
-		  alert("Shared to app: " + result.app);
-		};
-		 
-		var onError = function(msg) {
-		  alert("Sharing failed with message: " + msg);
-		};
-		 
-		window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
-		alert('share worked');
-	});
-	
-	inAppPurchase
-	.getProducts(['50coins'])
-	.then(function (products) {
-		console.log(products);
-	})
-	.catch(function (err) {
-		alert(JSON.stringify(err));
+		window.plugins.socialsharing.share('My best score in Catch the Dot is " + localStorage.highscore + "! Can you beat me? http://bit.ly/CatchTheDot', null, null, 'http://bit.ly/CatchTheDot');
 	});
 	
 	$('#buyCoins').on(clickHandler, function(e) {
 		inAppPurchase
-		.buy('50coins')
-		.then(function (data) {
-			// ...then mark it as consumed:
-			return inAppPurchase.consume(data.productType, data.receipt, data.signature);
-		})
-		.then(function () {
-			localStorage.coins = parseInt(localStorage.coins) + 50;
-			$("#totalCoins span").html(localStorage.coins);
-			alert("You now own " + localStorage.coins + " coins.");
-			// add helper achievement
-			doAchievement("CgkI_7ufk-EKEAIQCg");
-			
-			if (localStorage.coins>=50) doAchievement("CgkI_7ufk-EKEAIQDA");
-			if (localStorage.coins>=200) doAchievement("CgkI_7ufk-EKEAIQDg");
-			if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
+		.getProducts(['50coins'])
+		.then(function (products) {
+			inAppPurchase
+			.buy('50coins')
+			.then(function (data) {
+				// ...then mark it as consumed:
+				return inAppPurchase.consume(data.productType, data.receipt, data.signature);
+			})
+			.then(function () {
+				localStorage.coins = parseInt(localStorage.coins) + 50;
+				$("#totalCoins span").html(localStorage.coins);
+				alert("You now own " + localStorage.coins + " coins.");
+				// add helper achievement
+				doAchievement("CgkI_7ufk-EKEAIQCg");
+				
+				if (localStorage.coins>=50) doAchievement("CgkI_7ufk-EKEAIQDA");
+				if (localStorage.coins>=200) doAchievement("CgkI_7ufk-EKEAIQDg");
+				if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
+			})
+			.catch(function (err) {
+				console.log(JSON.stringify(err));
+			});
 		})
 		.catch(function (err) {
-			alert(JSON.stringify(err));
+			console.log(JSON.stringify(err));
+			alert('You need to connect to the internet first.');
 		});
 	});
 	
@@ -210,8 +190,12 @@ function onDeviceReady(){
 						leaderboardId: "CgkI_7ufk-EKEAIQAQ"
 					};
 					window.plugins.playGamesServices.showLeaderboard(dt);
+					
+					$('#autoLogin .fa').removeClass('fa-user-times').addClass('fa-user');
+					$('#autoLogin span').html('on');
+					localStorage.isLogin = 'true';
+					submitHighscore(localStorage.highscore);
 				});
-				submitHighscore(localStorage.highscore);
 			}, function(){
 				alert("Can't connect to the internet. Your score will not be saved on our leaderboard.");
 				$('#autoLogin .fa').removeClass('fa-user').addClass('fa-user-times');
