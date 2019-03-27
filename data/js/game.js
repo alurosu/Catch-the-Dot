@@ -109,27 +109,28 @@ function onDeviceReady(){
 	$('#buyCoins').on(clickHandler, function(e) {
 		inAppPurchase
 		.getProducts(['50coins'])
-		.then(function (products) {
-			inAppPurchase
-			.buy('50coins')
-			.then(function (data) {
-				return inAppPurchase.consume(data.productType, data.receipt, data.signature);
-			})
-			.then(function () {
-				localStorage.coins = parseInt(localStorage.coins) + 50;
-				$("#totalCoins span").html(localStorage.coins);
-				alert("You now own " + localStorage.coins + " coins.");
-				// add helper achievement
-				doAchievement("CgkI_7ufk-EKEAIQCg");
-				
-				if (localStorage.coins>=50) doAchievement("CgkI_7ufk-EKEAIQDA");
-				if (localStorage.coins>=200) doAchievement("CgkI_7ufk-EKEAIQDg");
-				if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
-			})
-			.catch(function (err) {
-				alert(JSON.stringify(err));
-				alert('You need to connect to the internet first.');
-			});
+		.then(function (products) { 
+			inAppPurchase.restorePurchases();
+		})
+		.then(function (data) {
+			inAppPurchase.consume(data[0].productType, data[0].receipt, data[0].signature);
+		})
+		.then(function () {
+			inAppPurchase.buy('50coins');
+		})
+		.then(function (data) {
+			return inAppPurchase.consume(data.productType, data.receipt, data.signature);
+		})
+		.then(function () {
+			localStorage.coins = parseInt(localStorage.coins) + 50;
+			$("#totalCoins span").html(localStorage.coins);
+			alert("You now own " + localStorage.coins + " coins.");
+			// add helper achievement
+			doAchievement("CgkI_7ufk-EKEAIQCg");
+			
+			if (localStorage.coins>=50) doAchievement("CgkI_7ufk-EKEAIQDA");
+			if (localStorage.coins>=200) doAchievement("CgkI_7ufk-EKEAIQDg");
+			if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
 		})
 		.catch(function (err) {
 			alert(JSON.stringify(err));
