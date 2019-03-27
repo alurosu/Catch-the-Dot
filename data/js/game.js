@@ -122,23 +122,33 @@ function onDeviceReady(){
 				});
 			})
 			.then(function () {
-				inAppPurchase.buy('50coins');
-			})
-			.then(function (data) {
-				return inAppPurchase.consume(data.productType, data.receipt, data.signature);
-			})
-			.then(function () {
-				localStorage.coins = parseInt(localStorage.coins) + 50;
-				$("#totalCoins span").html(localStorage.coins);
-				alert("You now own " + localStorage.coins + " coins.");
-				// add helper achievement
-				doAchievement("CgkI_7ufk-EKEAIQCg");
-				
-				if (localStorage.coins>=50) doAchievement("CgkI_7ufk-EKEAIQDA");
-				if (localStorage.coins>=200) doAchievement("CgkI_7ufk-EKEAIQDg");
-				if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
+				alert('buy');
+				inAppPurchase
+				.buy('50coins')
+				.then(function (data) {
+					alert('consume buy');
+					alert(JSON.stringify(data));
+					
+					return inAppPurchase.consume(data.productType, data.receipt, data.signature);
+				})
+				.then(function () {
+					localStorage.coins = parseInt(localStorage.coins) + 50;
+					$("#totalCoins span").html(localStorage.coins);
+					alert("You now own " + localStorage.coins + " coins.");
+					// add helper achievement
+					doAchievement("CgkI_7ufk-EKEAIQCg");
+					
+					if (localStorage.coins>=50) doAchievement("CgkI_7ufk-EKEAIQDA");
+					if (localStorage.coins>=200) doAchievement("CgkI_7ufk-EKEAIQDg");
+					if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
+				})
+				.catch(function (err) {
+					alert('error 3');
+					alert(JSON.stringify(err));
+				});
 			})
 			.catch(function (err) {
+				alert('error 2');
 				alert(JSON.stringify(err));
 			});
 		})
