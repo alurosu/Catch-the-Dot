@@ -200,6 +200,23 @@ function onDeviceReady(){
 				leaderboardId: "CgkI_7ufk-EKEAIQAQ"
 			};
 			window.plugins.playGamesServices.showLeaderboard(dt);
+		} else {
+			window.plugins.playGamesServices.auth(function(){
+				window.plugins.playGamesServices.showPlayer(function (playerData) {
+					localStorage.isLogin = 'true';
+					$('.hidden').fadeIn(0);
+					var dt = {
+						leaderboardId: "CgkI_7ufk-EKEAIQAQ"
+					};
+					window.plugins.playGamesServices.showLeaderboard(dt);
+				});
+				submitHighscore(localStorage.highscore);
+			}, function(){
+				alert("Can't connect to the internet. Your score will not be saved on our leaderboard.");
+				$('#autoLogin .fa').removeClass('fa-user').addClass('fa-user-times');
+				$('#autoLogin span').html('off');
+				localStorage.isLogin = 'false';
+			});
 		}
 	});
 	

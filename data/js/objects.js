@@ -272,7 +272,7 @@ function fontFix(){
 	$('#centerMenu').css({'margin-top' : cHeight*0.5-$('#centerMenu').height()*0.5});
 }
 
-function doLogin() {
+function doLogin(callback) {
 	if (typeof(window.plugins.playGamesServices) != "undefined") {
 		window.plugins.playGamesServices.isSignedIn(function (result) {
 			if (result.isSignedIn) {
