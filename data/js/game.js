@@ -113,8 +113,8 @@ function onDeviceReady(){
 		};
 		 
 		var onSuccess = function(result) {
-		  console.log("Share completed? " + result.completed);
-		  console.log("Shared to app: " + result.app);
+		  alert("Share completed? " + result.completed);
+		  alert("Shared to app: " + result.app);
 		};
 		 
 		var onError = function(msg) {
@@ -122,10 +122,19 @@ function onDeviceReady(){
 		};
 		 
 		window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+		alert('share worked');
+	});
+	
+	inAppPurchase
+	.getProducts(['50coins'])
+	.then(function (products) {
+		console.log(products);
+	})
+	.catch(function (err) {
+		alert(JSON.stringify(err));
 	});
 	
 	$('#buyCoins').on(clickHandler, function(e) {
-		alert('do buy');
 		inAppPurchase
 		.buy('50coins')
 		.then(function (data) {
@@ -186,7 +195,7 @@ function onDeviceReady(){
 		}
 	});
 	
-	$("#hughscore").on(clickHandler, function(e) {
+	$("#highscore").on(clickHandler, function(e) {
 		if (localStorage.isLogin == 'true') {
 			var dt = {
 				leaderboardId: "CgkI_7ufk-EKEAIQAQ"
@@ -228,6 +237,7 @@ function onDeviceReady(){
 			$('#autoLogin .fa').removeClass('fa-user-times').addClass('fa-user');
 			$('#autoLogin span').html('on');
 			localStorage.isLogin = 'true';
+			doLogin();
 		}	else {
 			$('#autoLogin .fa').removeClass('fa-user').addClass('fa-user-times');
 			$('#autoLogin span').html('off');
