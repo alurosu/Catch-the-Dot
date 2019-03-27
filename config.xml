@@ -21,7 +21,9 @@
 	
 	<plugin name="cordova-plugin-inappbilling" version="~0.0.7" source="npm"/>
 	<plugin name="cordova-plugin-x-socialsharing" version="~5.4.4" source="npm" />
-	<plugin name="cordova-plugin-play-games-services" version="~1.1.0" source="npm" />
+	<plugin name="cordova-plugin-play-games-services" version="~1.1.0" source="npm">
+		<param name="APP_ID" value="369675984383" />
+	</plugin>
 	
 	<icon src="icon.png" />
 	<platform name="android">
