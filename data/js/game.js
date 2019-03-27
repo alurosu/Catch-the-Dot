@@ -117,7 +117,24 @@ function onDeviceReady(){
 	});
 	
 	$('#share').on(clickHandler, function(e) {
-		navigator.share("My best score in Catch the Dot is " + localStorage.highscore + "! Can you beat me? :D http://bit.ly/CatchTheDot","Catch the Dot");
+		var options = {
+		  message: "My best score in Catch the Dot is " + localStorage.highscore + "! Can you beat me? http://bit.ly/CatchTheDot",
+		  subject: "Catch the Dot Highscore",
+		  url: 'http://bit.ly/CatchTheDot',
+		  chooserTitle: 'Catch the Dot',
+		  appPackageName: 'alurosu.games.catchthedot'
+		};
+		 
+		var onSuccess = function(result) {
+		  console.log("Share completed? " + result.completed);
+		  console.log("Shared to app: " + result.app);
+		};
+		 
+		var onError = function(msg) {
+		  console.log("Sharing failed with message: " + msg);
+		};
+		 
+		window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
 	});
 	
 	$('#buyCoins').on(clickHandler, function(e) {
@@ -173,7 +190,7 @@ function onDeviceReady(){
 			var dt = {
 				leaderboardId: "CgkI_7ufk-EKEAIQAQ"
 			};
-			googleplaygame.showLeaderboard(dt);
+			window.plugins.playGamesServices.showLeaderboard(dt);
 		}
 	});
 	
@@ -182,13 +199,13 @@ function onDeviceReady(){
 			var dt = {
 				leaderboardId: "CgkI_7ufk-EKEAIQAQ"
 			};
-			googleplaygame.showLeaderboard(dt);
+			window.plugins.playGamesServices.showLeaderboard(dt);
 		}
 	});
 	
 	$("#achievements").on(clickHandler, function(e) {
 		if (localStorage.isLogin == 'true') {
-			googleplaygame.showAchievements();
+			window.plugins.playGamesServices.showAchievements();
 		}
 	});
 	
@@ -334,7 +351,8 @@ function update(modifier) {
 }
 
 function openBrowser(url){
-	navigator.app.loadUrl(url, {openExternal : true});
+	var iab = cordova.InAppBrowser;
+	iab.open(url, '_system');
 	return false;
 }
 document.addEventListener("pause", onPause, false);

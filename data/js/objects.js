@@ -273,18 +273,18 @@ function fontFix(){
 }
 
 function doLogin() {
-	if (typeof(googleplaygame) != "undefined") {
-		googleplaygame.isSignedIn(function (result) {
+	if (typeof(window.plugins.playGamesServices) != "undefined") {
+		window.plugins.playGamesServices.isSignedIn(function (result) {
 			if (result.isSignedIn) {
 				// show user if logged in
-				googleplaygame.showPlayer(function (playerData) {
+				window.plugins.playGamesServices.showPlayer(function (playerData) {
 					$('.hidden').fadeIn(0);
 				});
 				submitHighscore(localStorage.highscore);
 			} else {
 				// login and then show user
-				googleplaygame.auth(function(){
-					googleplaygame.showPlayer(function (playerData) {
+				window.plugins.playGamesServices.auth(function(){
+					window.plugins.playGamesServices.showPlayer(function (playerData) {
 						localStorage.isLogin = 'true';
 						$('.hidden').fadeIn(0);
 					});
@@ -301,20 +301,20 @@ function doLogin() {
 }
 
 function doAchievement(aID){
-	if (localStorage.isLogin == 'true' && typeof(googleplaygame) != "undefined") {
+	if (localStorage.isLogin == 'true' && typeof(window.plugins.playGamesServices) != "undefined") {
 		var data = {
 			achievementId: aID
 		};
-		googleplaygame.unlockAchievement(data);
+		window.plugins.playGamesServices.unlockAchievement(data);
 	}
 }
 
 function submitHighscore(x) {
-	if (typeof(googleplaygame) != "undefined") {
+	if (typeof(window.plugins.playGamesServices) != "undefined") {
 		var data = {
 			score: x,
 			leaderboardId: "CgkI_7ufk-EKEAIQAQ"
 		};
-		googleplaygame.submitScore(data);
+		window.plugins.playGamesServices.submitScore(data);
 	}
 }
