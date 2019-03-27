@@ -103,33 +103,28 @@ function onDeviceReady(){
 	});
 	
 	$('#share').on(clickHandler, function(e) {
-		window.plugins.socialsharing.share('My best score in Catch the Dot is " + localStorage.highscore + "! Can you beat me? http://bit.ly/CatchTheDot', null, null, 'http://bit.ly/CatchTheDot');
+		window.plugins.socialsharing.share("My best score in Catch the Dot is " + localStorage.highscore + "! Can you beat me? http://bit.ly/CatchTheDot", null, null, 'http://bit.ly/CatchTheDot');
 	});
 	
 	$('#buyCoins').on(clickHandler, function(e) {
 		inAppPurchase
 		.getProducts(['50coins'])
 		.then(function (products) {
-			inAppPurchase
-			.buy('50coins')
-			.then(function (data) {
-				// ...then mark it as consumed:
-				return inAppPurchase.consume(data.productType, data.receipt, data.signature);
-			})
-			.then(function () {
-				localStorage.coins = parseInt(localStorage.coins) + 50;
-				$("#totalCoins span").html(localStorage.coins);
-				alert("You now own " + localStorage.coins + " coins.");
-				// add helper achievement
-				doAchievement("CgkI_7ufk-EKEAIQCg");
-				
-				if (localStorage.coins>=50) doAchievement("CgkI_7ufk-EKEAIQDA");
-				if (localStorage.coins>=200) doAchievement("CgkI_7ufk-EKEAIQDg");
-				if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
-			})
-			.catch(function (err) {
-				console.log(JSON.stringify(err));
-			});
+			return inAppPurchase.buy('50coins');
+		})
+		.then(function (data) {
+			return inAppPurchase.consume(data.productType, data.receipt, data.signature);
+		})
+		.then(function () {
+			localStorage.coins = parseInt(localStorage.coins) + 50;
+			$("#totalCoins span").html(localStorage.coins);
+			alert("You now own " + localStorage.coins + " coins.");
+			// add helper achievement
+			doAchievement("CgkI_7ufk-EKEAIQCg");
+			
+			if (localStorage.coins>=50) doAchievement("CgkI_7ufk-EKEAIQDA");
+			if (localStorage.coins>=200) doAchievement("CgkI_7ufk-EKEAIQDg");
+			if (localStorage.coins>=500) doAchievement("CgkI_7ufk-EKEAIQDQ");
 		})
 		.catch(function (err) {
 			console.log(JSON.stringify(err));
