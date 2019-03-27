@@ -144,16 +144,16 @@ function onDeviceReady(){
 				})
 				.catch(function (err) {
 					// alert('error 3');
-					alert(JSON.stringify(err));
+					console.log(JSON.stringify(err));
 				});
 			})
 			.catch(function (err) {
 				// alert('error 2');
-				alert(JSON.stringify(err));
+				console.log(JSON.stringify(err));
 			});
 		})
 		.catch(function (err) {
-			alert(JSON.stringify(err));
+			console.log(JSON.stringify(err));
 			alert('You need to connect to the internet first.');
 		});
 	});
